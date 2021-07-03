@@ -66,11 +66,11 @@ static inline float64_t rtlToF64(rtlreg_t r){
     return f;
 }
 
-inline rtlreg_t neg64(rtlreg_t a){
+static inline rtlreg_t neg64(rtlreg_t a){
   return a ^ F64_SIGN;
 }
 
-inline rtlreg_t neg32(rtlreg_t a){
+static inline rtlreg_t neg32(rtlreg_t a){
   return ((uint64_t)-1 << 32) | (a ^ F32_SIGN);
 }
 
