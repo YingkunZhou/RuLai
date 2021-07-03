@@ -35,7 +35,7 @@ void init_mem() {
   }
 #endif
 
-#if !defined(DIFF_TEST) && !_SHARE
+#if 0 && !defined(DIFF_TEST) && !_SHARE
   srand(time(0));
   uint32_t *p = (uint32_t *)pmem;
   uint64_t i;

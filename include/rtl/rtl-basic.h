@@ -1,7 +1,34 @@
-#ifndef __C_OP_H__
-#define __C_OP_H__
+#ifndef __RTL_BASIC_H__
+#define __RTL_BASIC_H__
 
-#include <common.h>
+#include <cpu/decode.h>
+#include <memory/vaddr.h>
+
+// relation operation
+enum {
+  //            +-- unsign
+  //            |   +-- sign
+  //            |   |   +-- equal
+  //            |   |   |   +-- invert
+  //            |   |   |   |
+  RELOP_FALSE = 0 | 0 | 0 | 0,
+  RELOP_TRUE  = 0 | 0 | 0 | 1,
+  RELOP_EQ    = 0 | 0 | 2 | 0,
+  RELOP_NE    = 0 | 0 | 2 | 1,
+
+  RELOP_LT    = 0 | 4 | 0 | 0,
+  RELOP_LE    = 0 | 4 | 2 | 0,
+  RELOP_GT    = 0 | 4 | 2 | 1,
+  RELOP_GE    = 0 | 4 | 0 | 1,
+
+  RELOP_LTU   = 8 | 0 | 0 | 0,
+  RELOP_LEU   = 8 | 0 | 2 | 0,
+  RELOP_GTU   = 8 | 0 | 2 | 1,
+  RELOP_GEU   = 8 | 0 | 0 | 1,
+};
+
+extern const rtlreg_t rzero;
+#define rz (&rzero)
 
 #ifdef ISA64
 #define c_shift_mask 0x3f
